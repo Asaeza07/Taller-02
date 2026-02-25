@@ -1,13 +1,13 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    // prestamo = [idPrestamo, nombreUsuario, tituloLibro, diasPrestamo, multaPorDia]
-    static ArrayList<ArrayList<Object>> prestamos = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         int opcion;
         do {
             mostrarMenu();
@@ -17,8 +17,8 @@ public class Main {
                 case 1 -> System.out.println("Función en desarrollo...");
                 case 2 -> System.out.println("Función 2 en desarrollo...");
                 case 3 -> System.out.println("Función 3 en desarollo...");
-                case 4 -> System.out.println("Función 4 en desarollo...");
-                case 5 -> System.out.println("Función 5 en desarollo...");
+                case 4 -> RegistrarPedidoCliente();
+                case 5 -> ListaPedidosCliente();
                 case 6 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción inválida.");
             }
@@ -26,6 +26,22 @@ public class Main {
         } while (opcion != 6);
 
         sc.close();
+    }
+
+    static void RegistrarPedidoCliente() throws IOException {
+        String nombre = leerTexto("Ingrese el nombre del producto: ");
+        int precio = leerEntero("Ingrese el precio del producto: ");
+        int cantidad = leerEntero("Ingrese la cantidad del producto: ");
+        Pedido pedido = new Pedido(nombre, precio, cantidad);
+        PedidosFunciones.RegistrarPedidos(pedido);
+    }
+    static void ListaPedidosCliente() throws IOException {
+        int ID = leerEntero("Ingrese el ID del cliente para listar sus pedidos: ");
+        ArrayList<Pedido> pedidos = (ArrayList<Pedido>) PedidosFunciones.ListarPedidos();
+        System.out.println("Pedidos del cliente ");
+        for (Pedido pedido : pedidos) {
+           System.out.println(pedido);
+        }
     }
 
     static void mostrarMenu() {
