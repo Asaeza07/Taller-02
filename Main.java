@@ -29,18 +29,22 @@ public class Main {
     }
 
     static void RegistrarPedidoCliente() throws IOException {
+        int IDP = leerEntero("Ingrese el ID del pedido: ");
+        int IDC = leerEntero("Ingrese el ID del cliente para registrar su pedido: ");
         String nombre = leerTexto("Ingrese el nombre del producto: ");
         int precio = leerEntero("Ingrese el precio del producto: ");
         int cantidad = leerEntero("Ingrese la cantidad del producto: ");
-        Pedido pedido = new Pedido(nombre, precio, cantidad);
+        Pedido pedido = new Pedido(nombre, precio, cantidad, IDC, IDP, 1);
         PedidosFunciones.RegistrarPedidos(pedido);
     }
     static void ListaPedidosCliente() throws IOException {
         int ID = leerEntero("Ingrese el ID del cliente para listar sus pedidos: ");
         ArrayList<Pedido> pedidos = (ArrayList<Pedido>) PedidosFunciones.ListarPedidos();
-        System.out.println("Pedidos del cliente ");
+        System.out.println("Pedidos del cliente " + ID);
         for (Pedido pedido : pedidos) {
-           System.out.println(pedido);
+            if (pedido.getIDCliente() == ID && pedido.getActivo() == 1) {
+                System.out.println("Nombre: " + pedido.getNombre() + ", ID Pedido: " + pedido.getIDPedido() + ", Precio: " + pedido.getPrecio() + ", Cantidad: " + pedido.getCantidad());
+            }
         }
     }
 

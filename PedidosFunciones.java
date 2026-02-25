@@ -19,7 +19,13 @@ public class PedidosFunciones {
         Scanner sc = new Scanner(new File("Pedidos.txt"));
         while (sc.hasNextLine()){
             String[] datos = sc.nextLine().split(",");
-            lista.add(new Pedido(datos[0], Integer.parseInt(datos[1]), Integer.parseInt(datos[2])));
+            int IDPedido = Integer.parseInt(datos[0]);
+            int IDCliente = Integer.parseInt(datos[1]);
+            String nombre = datos[2];
+            int precio = Integer.parseInt(datos[3]);
+            int cantidad = Integer.parseInt(datos[4]);
+            int activo = Integer.parseInt(datos[5]);
+            lista.add(new Pedido(nombre, precio, cantidad, IDCliente, IDPedido, activo));
         }
         sc.close();
         return lista;
