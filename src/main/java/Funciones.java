@@ -5,46 +5,6 @@ public class Funciones {
     static Cliente[] clientes = new Cliente[100];
     static int contadorClientes = 0;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int opcion;
-
-        do {
-            System.out.println("1. Registrar cliente");
-            System.out.println("2. Listar clientes");
-            System.out.println("3. Eliminar cliente");
-            System.out.println("4. Registrar pedido");
-            System.out.println("5. Listar pedidos");
-            System.out.println("6. Salir");
-            System.out.print("Opción: ");
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcion) {
-                case 1:
-                    registrarCliente(sc);
-                    break;
-
-                case 2:
-                    listarClientes();
-                    break;
-
-                case 3:
-                    eliminar_Cliente();
-                    break;
-
-                case 6:
-                    System.out.println("Saliendo...");
-                    opcion=3;
-                    break;
-
-                default:
-                    System.out.println("Opción inválida.");
-            }
-
-        } while (opcion != 3);
-    }
-
     public static void registrarCliente(Scanner sc) {
 
         if (contadorClientes >= clientes.length) {
@@ -88,7 +48,9 @@ public class Funciones {
         }
 
         for (int i = 0; i < contadorClientes; i++) {
-            System.out.println(clientes[i]);
+            if (clientes[i].isActivo()) {
+                System.out.println(clientes[i]);
+            }
         }
        
     }
@@ -109,22 +71,6 @@ public class Funciones {
 
 
     }
-
-
-     public static void registrar_pedido(){
-
-
-
-     }
-    public static void listar_pedido(){
-
-
-
-
-
-
-    }
-    
 }
 
 

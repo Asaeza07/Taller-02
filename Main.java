@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Pedidos.Pedido;
+import Pedidos.PedidosFunciones;
+
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
-
 
     public static void main(String[] args) throws IOException {
         int opcion;
@@ -14,13 +16,26 @@ public class Main {
             opcion = leerEntero("Seleccione una opción: ");
 
             switch (opcion) {
-                case 1 -> System.out.println("Función en desarrollo...");
-                case 2 -> System.out.println("Función 2 en desarrollo...");
-                case 3 -> System.out.println("Función 3 en desarollo...");
-                case 4 -> RegistrarPedidoCliente();
-                case 5 -> ListaPedidosCliente();
-                case 6 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opción inválida.");
+                case 1:
+                    Funciones.registrarCliente(sc);
+                    break;
+                case 2:
+                    Funciones.listarClientes();
+                    break;
+                case 3:
+                    Funciones.eliminar_Cliente();
+                    break;
+                case 4:
+                    RegistrarPedidoCliente();
+                    break;
+                case 5:
+                    ListaPedidosCliente();
+                    break;
+                case 6:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
             }
             System.out.println();
         } while (opcion != 6);
